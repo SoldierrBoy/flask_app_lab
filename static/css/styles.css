@@ -1,0 +1,83 @@
+/* --- Загальні стилі --- */
+body {
+    background-color: #000000; /* Дуже світло-сірий фон */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.resume-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 40px auto;
+    max-width: 1100px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Важливо для колонок */
+}
+
+/* --- Ліва колонка --- */
+.left-column {
+    background-color: #e9ecef; /* Світло-сірий фон для колонки */
+    padding: 40px;
+    text-align: center;
+}
+
+.left-column h3 {
+    color: #343a40;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+    font-size: 0.9rem;
+    color: #495057;
+}
+.contact-info li {
+    margin-bottom: 10px;
+}
+.contact-info i {
+    margin-right: 10px;
+    color: #007bff; /* Синій акцент для іконок */
+}
+
+.skills-list {
+    list-style: none;
+    padding: 0;
+}
+.skills-list li {
+    background-color: #d4dadf;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+/* --- Права колонка --- */
+.right-column {
+    padding: 50px;
+}
+
+.right-column h1 {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.right-column .lead {
+    color: #34495e;
+    margin-bottom: 30px;
+}
+
+.right-column h2 {
+    color: #007bff;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+.right-column h2 i {
+    margin-right: 15px;
+}

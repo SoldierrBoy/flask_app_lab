@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contact Me
+{% endblock %}
+
+{% block content %}
+  <div class="resume-container">
+    <h1>Contact Me</h1>
+    <p class="lead">Feel free to reach out via the form below or through my social media channels.</p>
+    <hr>
+
+    <form>
+      <div class="mb-3">
+        <label for="emailInput" class="form-label">Your Email Address</label>
+        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+      </div>
+      <div class="mb-3">
+        <label for="messageTextarea" class="form-label">Your Message</label>
+        <textarea class="form-control" id="messageTextarea" rows="4" placeholder="Your message here..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+
+  </div>
+{% endblock %}
