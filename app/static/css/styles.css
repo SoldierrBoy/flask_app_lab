@@ -1,7 +1,8 @@
 /* --- Загальні стилі --- */
 body {
-    background-color: #000000; /* Дуже світло-сірий фон */
+    background-color: #f4f7f6; /* Повертаємо світло-сірий фон для світлої теми */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #495057; /* М'який темно-сірий колір тексту */
 }
 
 .resume-container {
@@ -33,6 +34,7 @@ body {
     padding: 0;
     font-size: 0.9rem;
     color: #495057;
+    text-align: left; /* Вирівнювання тексту контактів по лівому краю */
 }
 .contact-info li {
     margin-bottom: 10px;
@@ -40,6 +42,7 @@ body {
 .contact-info i {
     margin-right: 10px;
     color: #007bff; /* Синій акцент для іконок */
+    width: 20px; /* Задаємо ширину для іконок, щоб текст був рівним */
 }
 
 .skills-list {
@@ -80,4 +83,42 @@ body {
 }
 .right-column h2 i {
     margin-right: 15px;
+} /* <-- ОСЬ ТУТ БУЛА ВІДСУТНЯ ЗАКРИВАЮЧА ДУЖКА } */
+
+/* --- Стилі темної теми --- */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+
+.dark-mode .resume-container,
+.dark-mode .card {
+    background-color: #2b2b2b;
+    border-color: #444;
+}
+
+.dark-mode .card-title, .dark-mode h1, .dark-mode h2, .dark-mode h4,
+.dark-mode .right-column h1, .dark-mode .right-column .lead {
+    color: #ffffff;
+}
+
+.dark-mode .left-column {
+    background-color: #212529;
+}
+
+.dark-mode .skills-list li {
+    background-color: #343a40;
+    color: #f0f0f0;
+}
+
+.dark-mode .contact-info, .dark-mode .left-column h3 {
+    color: #adb5bd;
+}
+
+.dark-mode .table {
+    color: #f0f0f0;
+}
+
+.dark-mode .table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-accent-bg: rgba(255, 255, 255, 0.05);
 }
