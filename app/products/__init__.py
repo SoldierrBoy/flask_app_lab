@@ -2,17 +2,12 @@ from flask import Flask
 
 app = Flask(__name__)
 
-# --- РЕЄСТРАЦІЯ BLUEPRINTS ---
 
-# 1. Реєструємо Blueprint для 'users'
 from app.users.views import users_bp
 app.register_blueprint(users_bp, url_prefix='/users')
 
-# 2. Реєструємо Blueprint для 'products'
+
 from app.products.views import products_bp
 app.register_blueprint(products_bp, url_prefix='/products')
 
-# ------------------------------
-
-# Імпортуємо основні маршрути (resume, contacts)
 from app import views
