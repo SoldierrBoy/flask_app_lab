@@ -1,26 +1,27 @@
 {% extends "base.html" %}
-
-{% block title %}
-Contact Me
-{% endblock %}
+{% import "_render_field.html" as rf %}
 
 {% block content %}
-  <div class="resume-container">
-    <h1>Contact Me</h1>
-    <p class="lead">Feel free to reach out via the form below or through my social media channels.</p>
-    <hr>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="content-card">
+            <h1>Contact Me</h1>
+            <p class="text-muted">Please fill out the form below.</p>
+            <hr>
 
-    <form>
-      <div class="mb-3">
-        <label for="emailInput" class="form-label">Your Email Address</label>
-        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
-      </div>
-      <div class="mb-3">
-        <label for="messageTextarea" class="form-label">Your Message</label>
-        <textarea class="form-control" id="messageTextarea" rows="4" placeholder="Your message here..."></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Send Message</button>
-    </form>
+            <form action="{{ url_for('contacts') }}" method="POST" novalidate>
 
-  </div>
+                {{ form.hidden_tag() }}
+
+                {{ rf.render_field(form.name) }}
+                {{ rf.render_field(form.email) }}
+                {{ rf.render_field(form.phone) }}
+                {{ rf.render_field(form.subject) }}
+                {{ rf.render_field(form.message) }}
+
+                {{ form.submit(class="btn btn-primary") }}
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

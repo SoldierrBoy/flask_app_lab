@@ -1,25 +1,29 @@
 {% extends 'base.html' %}
+{% import "_render_field.html" as rf %}
+
+{% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="card-title text-center">Login</h1>
-                    <form method="POST" action="{{ url_for('users.login') }}">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Sign In</button>
-                    </form>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="content-card">
+            <h1 class="text-center">Login</h1>
+            <hr>
+
+            <form action="{{ url_for('users.login') }}" method="POST" novalidate>
+
+                {{ form.hidden_tag() }}
+
+                {{ rf.render_field(form.username) }}
+                {{ rf.render_field(form.password) }}
+
+                <div class="mb-3 form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
                 </div>
-            </div>
+
+                {{ form.submit(class="btn btn-primary w-100") }}
+            </form>
         </div>
     </div>
 </div>
