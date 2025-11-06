@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% import "_render_field.html" as rf %}
+{% import "macros/form_macros.html" as rf %}
 
 {% block content %}
 <div class="row justify-content-center">
@@ -9,7 +9,7 @@
             <p class="text-muted">Please fill out the form below.</p>
             <hr>
 
-            <form action="{{ url_for('contacts') }}" method="POST" novalidate>
+            <<form action="{{ url_for('main.contacts') }}" method="POST" novalidate>
 
                 {{ form.hidden_tag() }}
 

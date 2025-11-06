@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
     <div class="container">
-        <a class="navbar-brand" href="{{ url_for('resume') }}">My Portfolio</a>
+        <a class="navbar-brand" href="{{ url_for('main.resume') }}">My Portfolio</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('resume') }}">Resume</a>
+                    <a class="nav-link" href="{{ url_for('main.resume') }}">Resume</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('contacts') }}">Contacts</a>
+                    <a class="nav-link" href="{{ url_for('main.contacts') }}">Contacts</a>
                 </li>
                 {% if session.username %}
                     <li class="nav-item">

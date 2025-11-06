@@ -5,6 +5,7 @@ body {
     color: #495057; /* М'який темно-сірий колір тексту */
 }
 
+/* --- СТИЛЬ ДЛЯ РЕЗЮМЕ (Залишаємо як є) --- */
 .resume-container {
     background-color: #ffffff;
     border-radius: 10px;
@@ -14,7 +15,7 @@ body {
     overflow: hidden; /* Важливо для колонок */
 }
 
-/* --- Ліва колонка --- */
+/* --- Ліва колонка (Залишаємо як є) --- */
 .left-column {
     background-color: #e9ecef; /* Світло-сірий фон для колонки */
     padding: 40px;
@@ -22,6 +23,7 @@ body {
 }
 
 .left-column h3 {
+/* ... (всі твої старі стилі залишаються) ... */
     color: #343a40;
     margin-top: 20px;
     text-transform: uppercase;
@@ -34,7 +36,7 @@ body {
     padding: 0;
     font-size: 0.9rem;
     color: #495057;
-    text-align: left; /* Вирівнювання тексту контактів по лівому краю */
+    text-align: left;
 }
 .contact-info li {
     margin-bottom: 10px;
@@ -42,7 +44,7 @@ body {
 .contact-info i {
     margin-right: 10px;
     color: #007bff; /* Синій акцент для іконок */
-    width: 20px; /* Задаємо ширину для іконок, щоб текст був рівним */
+    width: 20px;
 }
 
 .skills-list {
@@ -57,7 +59,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* --- Права колонка --- */
+/* --- Права колонка (Залишаємо як є) --- */
 .right-column {
     padding: 50px;
 }
@@ -73,7 +75,7 @@ body {
 }
 
 .right-column h2 {
-    color: #007bff;
+    color: #007bff; /* Твій синій акцент */
     border-bottom: 2px solid #e9ecef;
     padding-bottom: 10px;
     margin-bottom: 20px;
@@ -83,26 +85,51 @@ body {
 }
 .right-column h2 i {
     margin-right: 15px;
-} /* <-- ОСЬ ТУТ БУЛА ВІДСУТНЯ ЗАКРИВАЮЧА ДУЖКА } */
+}
 
-/* --- Стилі темної теми --- */
+/* --- (НОВИЙ БЛОК 1) Стилі для простих сторінок (Логін, Контакти, Форми) --- */
+/* Цей стиль НЕ буде застосовано до твого резюме */
+.content-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0; /* Зробимо рамку замість тіні, щоб відрізнялось */
+    border-radius: 8px;
+    margin: 40px auto;
+    padding: 30px;
+    max-width: 800px;
+}
+
+/* --- (НОВИЙ БЛОК 2) Стилі для кнопок (використовуємо твій синій колір) --- */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+/* --- Стилі темної теми (ОНОВЛЕНО) --- */
 body.dark-mode {
     background-color: #1a1a1a;
     color: #f0f0f0;
 }
 
+/* --- (НОВИЙ БЛОК 3) Оновлено: тепер .content-card ТАКОЖ стає темним --- */
 .dark-mode .resume-container,
-.dark-mode .card {
+.dark-mode .card,
+.dark-mode .content-card { /* <-- ДОДАНО .content-card */
     background-color: #2b2b2b;
     border-color: #444;
 }
 
 .dark-mode .card-title, .dark-mode h1, .dark-mode h2, .dark-mode h4,
-.dark-mode .right-column h1, .dark-mode .right-column .lead {
+.dark-mode .right-column h1, .dark-mode .right-column .lead,
+.dark-mode .content-card h1 { /* <-- ДОДАНО заголовок для .content-card */
     color: #ffffff;
 }
 
 .dark-mode .left-column {
+/* ... (всі твої старі стилі .dark-mode залишаються) ... */
     background-color: #212529;
 }
 
