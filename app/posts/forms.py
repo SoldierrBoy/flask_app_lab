@@ -21,9 +21,11 @@ class PostForm(FlaskForm):
         validators=[DataRequired()]
     )
 
-    publish_date = DateTimeLocalField('Publish Date',default=lambda: datetime.now(UTC),
-        validators=[DataRequired()]
-    )
+    publish_date = DateTimeLocalField('Publish Date',
+                                      format='%Y-%m-%dT%H:%M',
+                                      default=lambda: datetime.now(UTC),
+                                      validators=[DataRequired()]
+                                      )
 
     is_active = BooleanField('Active Post', default=True)
 
