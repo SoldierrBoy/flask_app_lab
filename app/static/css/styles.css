@@ -149,3 +149,18 @@ body.dark-mode {
 .dark-mode .table-striped>tbody>tr:nth-of-type(odd)>* {
     --bs-table-accent-bg: rgba(255, 255, 255, 0.05);
 }
+/* --- Стилі для форми постів --- */
+.multiple-select-custom {
+    border-radius: 0.5rem;
+    background-color: #fdfdfd;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: #6f42c1; /* Фіолетовий колір для активного лейблу */
+    opacity: 0.8;
+}
+
+.content-card h2 {
+    font-weight: 700;
+}

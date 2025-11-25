@@ -1,8 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash, make_response
 from app.forms import ContactForm, LoginForm
-# Створюємо Blueprint з назвою 'users'
 users_bp = Blueprint('users', __name__, template_folder='templates')
-
 @users_bp.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -32,7 +30,6 @@ def profile():
         return redirect(url_for('users.login'))
 
     theme = request.cookies.get('theme', 'light')
-    # Створюємо відповідь, щоб мати можливість встановлювати cookie
     response = make_response(render_template('users/profile.html', cookies=request.cookies, theme=theme))
 
     if request.method == 'POST':
@@ -67,10 +64,8 @@ def profile():
 
 @users_bp.route('/set-theme/<theme>')
 def set_theme(theme):
-    # Створюємо відповідь-перенаправлення на сторінку профілю
     response = make_response(redirect(url_for('users.profile')))
-    # Встановлюємо cookie з вибором теми
-    response.set_cookie('theme', theme, max_age=60*60*24*30) # зберігаємо на 30 днів
+    response.set_cookie('theme', theme, max_age=60*60*24*30)
     flash(f'Theme set to {theme}.', 'info')
     return response
 
