@@ -1,90 +1,57 @@
 {% extends "base.html" %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}All Posts{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-10">
-        <div class="content-card shadow-sm border-0">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="fw-bold text-dark">Blog Posts</h1>
+            <a href="{{ url_for('posts.add_post') }}" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i> Add New Post
+            </a>
+        </div>
 
-            <div class="d-flex align-items-center mb-4 border-bottom pb-3">
-                <h2 class="m-0 text-primary">
-                    <i class="fas fa-pen-nib me-2"></i>{{ title }}
-                </h2>
-            </div>
+        <div class="row">
+            {% if posts %}
+                {% for post in posts %}
+                <div class="col-md-6 mb-4">
+                    <div class="content-card h-100 d-flex flex-column p-4 border rounded-3 bg-white">
+                        <h3 class="h4 mb-2 text-dark">{{ post.title }}</h3>
 
-            <form action="{{ action_url }}" method="POST" novalidate>
-                {{ form.hidden_tag() }}
+                        <div class="text-muted small mb-3 text-uppercase fw-bold">
+                            <span class="me-2 text-primary">{{ post.category.name.title() }}</span> |
+                            <span class="ms-2">{{ post.posted.strftime('%Y-%m-%d') }}</span>
+                        </div>
 
-                <div class="form-floating mb-4">
-                    {{ form.title(class="form-control form-control-lg" + (" is-invalid" if form.title.errors else ""), placeholder="Enter title") }}
-                    {{ form.title.label }}
-                    {% for error in form.title.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                </div>
+                        {% if post.tags %}
+                            <div class="mb-3">
+                                {% for tag in post.tags %}
+                                    <span class="badge bg-light text-dark border me-1" style="font-weight: normal;">
+                                        #{{ tag.name }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <p class="text-secondary mb-4 flex-grow-1">
+                            {{ post.content | truncate(120) }}
+                        </p>
 
-                <div class="mb-4">
-                    <label class="form-label fw-bold text-secondary">Content</label>
-                    {{ form.content(class="form-control" + (" is-invalid" if form.content.errors else ""), rows=12) }}
-                    {% for error in form.content.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="row g-3 mb-4 p-3 bg-light rounded-3">
-                    <div class="col-md-4">
-                        <label class="form-label small text-uppercase fw-bold text-muted">Category</label>
-                        {{ form.category(class="form-select" + (" is-invalid" if form.category.errors else "")) }}
-                        {% for error in form.category.errors %}
-                            <div class="invalid-feedback">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label small text-uppercase fw-bold text-muted">Author</label>
-                        {{ form.author_id(class="form-select" + (" is-invalid" if form.author_id.errors else "")) }}
-                        {% for error in form.author_id.errors %}
-                            <div class="invalid-feedback">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label small text-uppercase fw-bold text-muted">Publish Date</label>
-                        {{ form.publish_date(class="form-control" + (" is-invalid" if form.publish_date.errors else "")) }}
-                        {% for error in form.publish_date.errors %}
-                            <div class="invalid-feedback">{{ error }}</div>
-                        {% endfor %}
+                        <div class="mt-auto">
+                            <a href="{{ url_for('posts.detail_post', id=post.id) }}" class="btn btn-outline-primary px-4">
+                                Read More
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="mb-4">
-                    <label class="form-label fw-bold text-secondary">Tags</label>
-                    {{ form.tags(class="form-select multiple-select-custom" + (" is-invalid" if form.tags.errors else ""), size=5) }}
-                    <div class="form-text">Hold Ctrl (Windows) or Cmd (Mac) to select multiple tags.</div>
-                    {% for error in form.tags.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <div class="content-card text-center p-5">
+                        <p class="lead text-muted">No posts found. Be the first to create one!</p>
+                    </div>
                 </div>
-
-                <div class="form-check form-switch mb-4">
-                    {{ form.is_active(class="form-check-input", role="switch") }}
-                    <label class="form-check-label fw-bold" for="is_active">Publish Immediately?</label>
-                </div>
-
-                <hr>
-
-                <div class="d-flex justify-content-end gap-2">
-                    {% if post %}
-                        <a href="{{ url_for('posts.detail_post', id=post.id) }}" class="btn btn-outline-secondary px-4">Cancel</a>
-                    {% else %}
-                        <a href="{{ url_for('posts.get_posts') }}" class="btn btn-outline-secondary px-4">Cancel</a>
-                    {% endif %}
-
-                    {{ form.submit(class="btn btn-primary px-5 fw-bold") }}
-                </div>
-
-            </form>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -1,7 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
     <div class="container">
         <a class="navbar-brand" href="{{ url_for('main.resume') }}">My Portfolio</a>
-        <div class="collapse navbar-collapse">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main.resume') }}">Resume</a>
@@ -9,16 +12,25 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main.contacts') }}">Contacts</a>
                 </li>
-                {% if session.username %}
+
+                {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('users.profile') }}">Profile</a>
+                        <a class="nav-link fw-bold" href="{{ url_for('users.profile') }}">
+                            <i class="fas fa-user-circle"></i> Profile ({{ current_user.username }})
+                        </a>
                     </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.users_list') }}">Users</a>
+                </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users.register') }}">Register</a>
+                    </li>
                 {% endif %}
-            </ul>
+                </ul>
         </div>
     </div>
 </nav>

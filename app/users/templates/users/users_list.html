@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Community{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Users List <span class="badge bg-secondary fs-6 align-top">{{ count }}</span></h2>
+        </div>
+
+        {% if users %}
+        <div class="table-responsive shadow-sm rounded">
+            <table class="table table-hover align-middle mb-0 bg-white">
+                <thead class="bg-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Bio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td><span class="text-muted fw-bold">#{{ user.id }}</span></td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ms-2">
+                                    <p class="fw-bold mb-1">{{ user.username }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">{{ user.email }}</p>
+                        </td>
+                        <td>
+                            <span class="text-muted small">{{ user.about_me or 'No bio provided' }}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <div class="alert alert-info text-center">No users found.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
