@@ -18,7 +18,6 @@ class UserAuthTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_registration_process(self):
-        """Перевірка успішної реєстрації нового користувача."""
         response = self.client.post('/users/register', data={
             'username': 'new_student',
             'email': 'student@test.com',
@@ -33,8 +32,7 @@ class UserAuthTestCase(unittest.TestCase):
         self.assertIsNotNone(user)
 
     def test_login_and_logout_flow(self):
-        """Перевірка входу та виходу."""
-        # 1. Реєструємо користувача
+
         self.client.post('/users/register', data={
             'username': 'auth_user',
             'email': 'auth@test.com',
@@ -42,27 +40,18 @@ class UserAuthTestCase(unittest.TestCase):
             'confirm_password': 'my_password'
         }, follow_redirects=True)
 
-        # 2. Логінимось (і одразу перевіряємо, що потрапили на профіль)
         response = self.client.post('/users/login', data={
             'username': 'auth_user',
             'password': 'my_password'
         }, follow_redirects=True)
 
         self.assertEqual(response.status_code, 200)
-        # Перевіряємо flash-повідомлення
         self.assertIn(b'Welcome back, auth_user!', response.data)
-        # Перевіряємо, що на сторінці є ім'я користувача (це означає, що ми на профілі)
         self.assertIn(b'auth_user', response.data)
-
-        # 3. Виходимо
         response = self.client.post('/users/logout', follow_redirects=True)
-        # Перевіряємо повідомлення про вихід
         self.assertIn(b'You have been logged out.', response.data)
-        # Перевіряємо, що повернулись на форму входу
         self.assertIn(b'Login', response.data)
 
     def test_protected_page_access(self):
-        """Перевірка захисту сторінок."""
         response = self.client.get('/users/profile', follow_redirects=True)
-        # ТУТ БУЛА ПОМИЛКА: Виправляємо очікуваний текст
         self.assertIn(b'Please log in to access this page.', response.data)
